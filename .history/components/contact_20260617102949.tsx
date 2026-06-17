@@ -57,6 +57,9 @@ export function Contact() {
         service: services[0],
         message: "",
       });
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => setIsSuccess(false), 5000);
     } catch (err) {
       setError("Failed to send message. Please try again or email directly.");
     } finally {
@@ -137,104 +140,89 @@ export function Contact() {
 
         {/* Form */}
         <div className="min-w-[300px] flex-1 basis-[440px]">
-          {isSuccess ? (
-            <div className="flex flex-col items-center justify-center gap-6 rounded-[22px] border border-hairline bg-white p-6 shadow-card sm:p-9 text-center min-h-[400px]">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
-                <CheckCircle2 className="h-10 w-10 text-green-600" />
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-[18px] rounded-[22px] border border-hairline bg-white p-6 shadow-card sm:p-9"
+          >
+            {isSuccess && (
+              <div className="flex items-center gap-2 rounded-lg bg-green-50 border border-green-200 px-4 py-3 text-green-800">
+                <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
+                <p className="text-sm font-medium">Message sent successfully! I'll get back to you soon.</p>
               </div>
-              <div>
-                <h3 className="mb-2 text-2xl font-bold text-ink">Thank You!</h3>
-                <p className="text-base text-muted max-w-md">
-                  Your message has been sent successfully. I'll review your inquiry and get back to you within 24 hours.
-                </p>
+            )}
+            {error && (
+              <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-red-800 text-sm">
+                {error}
               </div>
-              <Button
-                onClick={() => setIsSuccess(false)}
-                variant="outline"
-                className="mt-4"
-              >
-                Send Another Message
-              </Button>
+            )}
+            <div>
+              <label className={labelClass}>
+                Your Name <span className="text-accent">*</span>
+              </label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="John Smith"
+                className={fieldClass}
+                required
+              />
             </div>
-          ) : (
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-[18px] rounded-[22px] border border-hairline bg-white p-6 shadow-card sm:p-9"
-            >
-              {error && (
-                <div className="rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-red-800 text-sm">
-                  {error}
-                </div>
-              )}
-              <div>
-                <label className={labelClass}>
-                  Your Name <span className="text-accent">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="John Smith"
-                  className={fieldClass}
-                  required
-                />
-              </div>
-              <div>
-                <label className={labelClass}>
-                  Work Email <span className="text-accent">*</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="john@company.com"
-                  className={fieldClass}
-                  required
-                />
-              </div>
-              <div>
-                <label className={labelClass}>Company</label>
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  placeholder="Your Company Name"
-                  className={fieldClass}
-                />
-              </div>
-              <div>
-                <label className={labelClass}>Service Needed</label>
-                <select
-                  name="service"
-                  value={formData.service}
-                  onChange={handleChange}
-                  className={fieldClass}
-                >
-                  {services.map((s) => (
-                    <option key={s}>{s}</option>
-                  ))}
-                </select>
-              </div>
-              <div>
-                <label className={labelClass}>Tell Us About Your Product</label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  rows={4}
-                  placeholder="What are you building? What's your tech stack? What QA challenges are you facing?"
-                  className={`${fieldClass} resize-y`}
-                />
-              </div>
-              <Button type="submit" className="self-start" disabled={isSubmitting}>
-                {isSubmitting ? "Sending..." : "Send Message"}
-                <ArrowRight className="h-[18px] w-[18px]" />
-              </Button>
-            </form>
-          )}
+            <div>
+              <label className={labelClass}>
+                Work Email <span className="text-accent">*</span>
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="john@company.com"
+                className={fieldClass}
+                required
+              />
+            </div>
+            <div>
+              <label className={labelClass}>Company</label>
+              <input
+                type="text"
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
+                placeholder="Your Company Name"
+                className={fieldClass}
+              />
+            </div>
+            <div>
+              <label className={labelClass}>Service Needed</label>
+              <select
+                name="service"
+                value={formData.service}
+                onChange={handleChange}
+                className={fieldClass}
+              >
+                {services.map((s) => (
+                  <option key={s}>{s}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <label className={labelClass}>Tell Us About Your Product</label>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                rows={4}
+                placeholder="What are you building? What's your tech stack? What QA challenges are you facing?"
+                className={`${fieldClass} resize-y`}
+              />
+            </div>
+            <Button type="submit" className="self-start" disabled={isSubmitting}>
+              {isSubmitting ? "Sending..." : "Send Message"}
+              <ArrowRight className="h-[18px] w-[18px]" />
+            </Button>
+          </form>
         </div>
       </div>
     </section>

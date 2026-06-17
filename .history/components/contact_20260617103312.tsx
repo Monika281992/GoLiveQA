@@ -57,6 +57,9 @@ export function Contact() {
         service: services[0],
         message: "",
       });
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => setIsSuccess(false), 5000);
     } catch (err) {
       setError("Failed to send message. Please try again or email directly.");
     } finally {
