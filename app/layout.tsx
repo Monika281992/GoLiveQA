@@ -17,7 +17,7 @@ const kaushan = Kaushan_Script({
 });
 
 export const metadata: Metadata = {
-  title: "Monika Chaudhary — Software Testing Engineer | GoLiveQA",
+  title: "GoLiveQA",
   description:
     "Senior QA engineer with 9 years of hands-on experience testing Healthcare, SaaS, AI & Real Estate products. Playwright, Cypress, Postman. Available remotely.",
 };
