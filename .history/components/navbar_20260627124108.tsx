@@ -1,0 +1,261 @@
+"use client";
+
+import { useState, useRef } from "react";
+import { ChevronDown, ArrowRight, Globe, Smartphone, Webhook, Monitor, LayoutDashboard, Layers, RefreshCw, CheckCircle2, GitMerge, Workflow, Zap, MonitorSmartphone, Shield, Code2, FileCode, Terminal, Send, Activity } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const engagementModels = [
+  { title: "Managed QA", desc: "Full ownership of your QA function." },
+  { title: "QA Engineers for Hire", desc: "Flexible QA capacity when you need it." },
+  { title: "Dedicated QA Teams", desc: "Embedded teams aligned with your roadmap." },
+];
+
+const focusAreas = [
+  { label: "Web App Testing", desc: "End-to-end web app coverage", icon: Globe },
+  { label: "Mobile App Testing", desc: "iOS and Android validation", icon: Smartphone },
+  { label: "API Testing", desc: "REST & GraphQL endpoints", icon: Webhook },
+  { label: "Desktop App Testing", desc: "Windows & macOS coverage", icon: Monitor },
+  { label: "Dashboard Testing", desc: "Analytics & reporting checks", icon: LayoutDashboard },
+  { label: "Cross-Platform Testing", desc: "Consistent across all platforms", icon: Layers },
+];
+
+const testingCoverage = [
+  { label: "Regression Testing", desc: "Catch bugs before each release", icon: RefreshCw },
+  { label: "Functional Testing", desc: "Verify every feature works", icon: CheckCircle2 },
+  { label: "Integration Testing", desc: "Test component interactions", icon: GitMerge },
+  { label: "End-to-End Testing", desc: "Full user journey validation", icon: Workflow },
+  { label: "Performance Testing", desc: "Load and speed benchmarks", icon: Zap },
+  { label: "Compatibility Testing", desc: "Works across browsers & devices", icon: MonitorSmartphone },
+];
+
+const frameworks = [
+  { label: "Playwright", desc: "Modern browser automation", icon: Code2 },
+  { label: "Cypress", desc: "Fast front-end testing", icon: FileCode },
+  { label: "Selenium", desc: "Cross-browser testing", icon: Terminal },
+  { label: "Appium", desc: "Mobile automation framework", icon: Smartphone },
+  { label: "Postman", desc: "API testing & monitoring", icon: Send },
+  { label: "k6", desc: "Load testing at scale", icon: Activity },
+];
+
+export function Navbar() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function handleMouseEnter() {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    setDropdownOpen(true);
+  }
+
+  function handleMouseLeave() {
+    closeTimer.current = setTimeout(() => setDropdownOpen(false), 150);
+  }
+
+  function closeAll() {
+    setDropdownOpen(false);
+    setMobileMenuOpen(false);
+    setMobileServicesOpen(false);
+  }
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-hairline bg-surface/80 backdrop-blur-md backdrop-saturate-150">
+      <nav className="mx-auto flex max-w-container items-center justify-between gap-4 px-5 py-3.5 sm:px-8 lg:px-12">
+        <a href="#top" className="text-xl font-bold tracking-tight text-ink">
+          GoLiveQA
+        </a>
+
+        {/* Desktop links */}
+        <div className="hidden items-center gap-7 md:flex">
+          <a href="#about" className="text-[17px] font-medium text-body transition-colors hover:text-ink">
+            About
+          </a>
+
+          {/* Services mega-menu dropdown */}
+          <div className="relative" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <button className="flex items-center gap-1 text-[17px] font-medium text-body transition-colors hover:text-ink">
+              Services
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${dropdownOpen ? "rotate-180" : ""}`} />
+            </button>
+
+            {dropdownOpen && (
+              <div className="absolute left-1/2 top-full mt-2 w-[920px] -translate-x-1/2 overflow-y-auto rounded-[18px] border border-hairline bg-white p-6 shadow-lift" style={{maxHeight: "calc(100vh - 80px)"}}>
+
+                {/* Top 3 highlight cards */}
+                <div className="mb-5 grid grid-cols-3 gap-3 rounded-[12px] bg-surface-soft p-4">
+                  {[
+                    { icon: "⚙️", title: "Quality Engineering", text: "Deliver resilient, scalable software through enterprise-grade quality engineering." },
+                    { icon: "🤖", title: "Test Automation", text: "Establish consistent, high-performance automation frameworks for dependable releases." },
+                    { icon: "🔍", title: "Manual Testing", text: "Identify and resolve complex user experience issues with expert-led manual validation." },
+                  ].map((card) => (
+                    <div key={card.title} className="flex items-start gap-3 rounded-[10px] bg-white p-4 shadow-sm">
+                      <span className="mt-0.5 text-[1.5rem] leading-none">{card.icon}</span>
+                      <div>
+                        <a href="#services" onClick={closeAll}
+                          className="mb-1 block text-[15px] font-semibold text-ink underline underline-offset-2 hover:text-accent">
+                          {card.title}
+                        </a>
+                        <p className="text-[13.5px] leading-snug text-muted">{card.text}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Divider */}
+                <div className="mb-5 border-t border-hairline" />
+
+                <div className="grid grid-cols-3 gap-6">
+                  {/* Col 1 */}
+                  <div>
+                    <p className="mb-4 text-[12px] font-bold uppercase tracking-[0.08em] text-muted">Focus Area</p>
+                    <div className="flex flex-col gap-4">
+                      {focusAreas.map(({ label, desc, icon: Icon }) => (
+                        <div key={label} className="flex items-start gap-3">
+                          <span className="flex h-9 w-9 flex-none items-center justify-center rounded-[8px] border border-hairline bg-white text-ink shadow-sm">
+                            <Icon className="h-[16px] w-[16px]" />
+                          </span>
+                          <div>
+                            <p className="text-[14px] font-semibold text-ink">{label}</p>
+                            <p className="text-[12px] text-muted">{desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Col 2 */}
+                  <div>
+                    <p className="mb-4 text-[12px] font-bold uppercase tracking-[0.08em] text-muted">Testing Coverage</p>
+                    <div className="flex flex-col gap-4">
+                      {testingCoverage.map(({ label, desc, icon: Icon }) => (
+                        <div key={label} className="flex items-start gap-3">
+                          <span className="flex h-9 w-9 flex-none items-center justify-center rounded-[8px] border border-hairline bg-white text-ink shadow-sm">
+                            <Icon className="h-[16px] w-[16px]" />
+                          </span>
+                          <div>
+                            <p className="text-[14px] font-semibold text-ink">{label}</p>
+                            <p className="text-[12px] text-muted">{desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Col 3 */}
+                  <div>
+                    <p className="mb-4 text-[12px] font-bold uppercase tracking-[0.08em] text-muted">Frameworks</p>
+                    <div className="flex flex-col gap-4">
+                      {frameworks.map(({ label, desc, icon: Icon }) => (
+                        <div key={label} className="flex items-start gap-3">
+                          <span className="flex h-9 w-9 flex-none items-center justify-center rounded-[8px] border border-hairline bg-white text-ink shadow-sm">
+                            <Icon className="h-[16px] w-[16px]" />
+                          </span>
+                          <div>
+                            <p className="text-[14px] font-semibold text-ink">{label}</p>
+                            <p className="text-[12px] text-muted">{desc}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                {/* Bottom bar */}
+                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-[12px] border border-hairline bg-surface-soft px-5 py-3.5">
+                  <p className="text-[14px] text-muted">
+                    Didn&apos;t find what you were looking for? Tell us about your needs.
+                  </p>
+                  <a href="/book-a-call" onClick={closeAll}
+                    className="flex items-center gap-1.5 text-[13.5px] font-semibold text-accent transition-opacity hover:opacity-80">
+                    Book a Consultation <ArrowRight className="h-[14px] w-[14px]" />
+                  </a>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <a href="#process" className="text-[17px] font-medium text-body transition-colors hover:text-ink">Process</a>
+          <a href="#contact" className="text-[17px] font-medium text-body transition-colors hover:text-ink">Contact</a>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <Button asChild variant="outline" size="sm" className="hidden md:inline-flex">
+            <a href="/book-a-call">Book a Call</a>
+          </Button>
+          {/* Mobile hamburger */}
+          <button
+            className="flex h-8 w-8 flex-col items-center justify-center gap-1.5 md:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`block h-0.5 w-5 bg-ink transition-all ${mobileMenuOpen ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-ink transition-all ${mobileMenuOpen ? "opacity-0" : ""}`} />
+            <span className={`block h-0.5 w-5 bg-ink transition-all ${mobileMenuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="border-t border-hairline bg-white px-5 pb-6 pt-4 md:hidden">
+          <div className="flex flex-col gap-1">
+            <a href="#about" onClick={closeAll} className="py-2 text-[15px] font-medium text-body">About</a>
+
+            <div>
+              <button
+                onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                className="flex w-full items-center justify-between py-2 text-[15px] font-medium text-body"
+              >
+                Services
+                <ChevronDown className={`h-4 w-4 transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`} />
+              </button>
+              {mobileServicesOpen && (
+                <div className="mb-2 mt-1 flex flex-col gap-4 rounded-[12px] border border-hairline bg-surface-soft p-4">
+                  <div>
+                    <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.08em] text-muted">Engagement Models</p>
+                    {engagementModels.map((item) => (
+                      <a key={item.title} href="#services" onClick={closeAll}
+                        className="block py-1 text-[14px] font-medium text-body hover:text-accent">{item.title}</a>
+                    ))}
+                  </div>
+                  <div>
+                    <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.08em] text-muted">Focus Area</p>
+                    {focusAreas.map(({ label, icon: Icon }) => (
+                      <span key={label} className="flex items-center gap-2 py-1 text-[14px] text-body">
+                        <Icon className="h-[13px] w-[13px] flex-none text-accent" />{label}
+                      </span>
+                    ))}
+                  </div>
+                  <div>
+                    <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.08em] text-muted">Testing Coverage</p>
+                    {testingCoverage.map(({ label, icon: Icon }) => (
+                      <span key={label} className="flex items-center gap-2 py-1 text-[14px] text-body">
+                        <Icon className="h-[13px] w-[13px] flex-none text-accent" />{label}
+                      </span>
+                    ))}
+                  </div>
+                  <div>
+                    <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.08em] text-muted">Frameworks</p>
+                    {frameworks.map(({ label, icon: Icon }) => (
+                      <span key={label} className="flex items-center gap-2 py-1 text-[14px] text-body">
+                        <Icon className="h-[13px] w-[13px] flex-none text-accent" />{label}
+                      </span>
+                    ))}
+                  </div>
+                  <a href="/book-a-call" onClick={closeAll}
+                    className="flex items-center gap-1.5 text-[13.5px] font-semibold text-accent">
+                    Book a Consultation <ArrowRight className="h-[14px] w-[14px]" />
+                  </a>
+                </div>
+              )}
+            </div>
+
+            <a href="#process" onClick={closeAll} className="py-2 text-[15px] font-medium text-body">Process</a>
+            <a href="#contact" onClick={closeAll} className="py-2 text-[15px] font-medium text-body">Contact</a>
+            <a href="/book-a-call" onClick={closeAll}
+              className="mt-2 inline-flex items-center justify-center rounded-xl border-[1.5px] border-brand px-4 py-2 text-[14px] font-semibold text-brand">
+              Book a Call
+            </a>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
