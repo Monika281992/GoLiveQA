@@ -75,7 +75,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="border-t border-hairline bg-surface-soft py-16 md:py-24 lg:py-[108px]"
+      className="bg-[#ede5d5] py-16 md:py-24 lg:py-[108px]"
     >
       <div className="mx-auto flex max-w-container flex-wrap items-start gap-10 px-5 sm:px-8 md:gap-12 lg:gap-[72px] lg:px-12">
         {/* Details */}

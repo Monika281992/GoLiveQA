@@ -83,7 +83,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-hairline bg-surface/80 backdrop-blur-md backdrop-saturate-150">
+    <header className="sticky top-0 z-50 bg-surface/80 backdrop-blur-md backdrop-saturate-150">
       <nav className="mx-auto flex max-w-container items-center justify-between gap-4 px-5 py-3.5 sm:px-8 lg:px-12">
         <a href="/" className="text-xl font-bold tracking-tight text-ink">
           GoLiveQA

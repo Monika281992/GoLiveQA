@@ -9,7 +9,7 @@ const guarantees = [
 
 export function Pricing() {
   return (
-    <section id="pricing" className="py-16 md:py-24 lg:py-[108px]">
+    <section id="pricing" className="bg-white py-16 md:py-24 lg:py-[108px]">
       <div className="mx-auto max-w-container px-5 sm:px-8 lg:px-12">
         <div className="relative mx-auto max-w-[740px] overflow-hidden rounded-[26px] border border-hairline bg-white px-6 py-10 text-center shadow-cta sm:px-14 md:py-[68px]">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(70%_60%_at_50%_0%,#f6ebe5,transparent_70%)]" />
