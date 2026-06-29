@@ -24,7 +24,7 @@ export function ProblemsWeSolve() {
   return (
     <section
       style={{
-        background: "#faf5ec",
+        background: "#ffffff",
         padding: "clamp(56px, 8vw, 96px) clamp(20px, 5vw, 32px)",
       }}
     >

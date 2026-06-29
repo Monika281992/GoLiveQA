@@ -12,7 +12,6 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <hr className="border-t border-hairline" />
         <ProblemsWeSolve />
         <Process />
         <Pricing />
