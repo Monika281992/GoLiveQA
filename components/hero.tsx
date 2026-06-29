@@ -2,27 +2,27 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { Mail, ArrowRight } from "lucide-react";
 
 export function Hero() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [status, setStatus] = useState("idle");
+  const [loading, setLoading] = useState(false);
 
-  async function handleBook() {
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
     const trimmed = email.trim();
     if (!trimmed) {
-      setError("Please enter your email address.");
+      setError("Enter your email to continue");
       return;
     }
-    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
-    if (!valid) {
-      setError("Please enter a valid email address.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+      setError("Enter a valid email address");
       return;
     }
     setError("");
-    setStatus("loading");
+    setLoading(true);
     try {
       await fetch("/api/book", {
         method: "POST",
@@ -30,45 +30,151 @@ export function Hero() {
         body: JSON.stringify({ email: trimmed }),
       });
     } catch {
-      // proceed to form regardless
+      // proceed regardless
     }
     router.push(`/book-a-call?email=${encodeURIComponent(trimmed)}`);
   }
 
   return (
-    <section id="top" className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(58%_46%_at_50%_-4%,#f6ebe5,transparent_72%)]" />
-      <div className="relative mx-auto max-w-[840px] px-5 pb-12 pt-16 text-center sm:px-8 md:pb-16 md:pt-24 lg:px-12 lg:pt-[108px]">
-        <h1 className="text-[clamp(2.5rem,7vw,4.1rem)] font-bold leading-[1.03] tracking-[-0.035em] text-ink">
+    <section id="top" style={{ background: "#F8F4ED", padding: "96px 0 104px" }}>
+      <div style={{ maxWidth: 840, margin: "0 auto", padding: "0 36px", textAlign: "center", fontFamily: "'Poppins', sans-serif" }}>
+
+        {/* Eyebrow pill */}
+        <span style={{
+          display: "inline-flex",
+          background: "#F4E3D6",
+          color: "#B0532A",
+          borderRadius: 999,
+          padding: "6px 15px",
+          fontSize: 12,
+          fontWeight: 600,
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+          marginBottom: 26,
+        }}>
+          Senior QA, on demand
+        </span>
+
+        {/* H1 */}
+        <h1 style={{
+          fontSize: "clamp(44px, 8vw, 82px)",
+          lineHeight: 1.0,
+          fontWeight: 700,
+          letterSpacing: "-0.035em",
+          color: "#1C1814",
+          margin: 0,
+          fontFamily: "'Poppins', sans-serif",
+        }}>
           Your QA Partner
         </h1>
-        <p className="mt-4 text-[clamp(1.1rem,2.5vw,1.45rem)] font-semibold text-accent">
-          Startups ship faster and break less with GoLiveQA. Senior QA coverage across manual testing, automation, CI/CD, and real-time reporting.
+
+        {/* Subhead */}
+        <p style={{
+          fontSize: 23,
+          lineHeight: 1.45,
+          fontWeight: 500,
+          color: "#C05F32",
+          margin: "24px auto 0",
+          maxWidth: 620,
+          fontFamily: "'Poppins', sans-serif",
+        }}>
+          Senior QA coverage so your team ships fast and breaks nothing.
         </p>
-        <div className="mt-8 mx-auto max-w-[480px]">
-          <div className={`flex items-center overflow-hidden rounded-full border bg-surface shadow-sm transition-colors ${error ? "border-red-400" : "border-hairline"}`}>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => { setEmail(e.target.value); if (error) setError(""); }}
-              placeholder="Enter your business email"
-              className="flex-1 bg-transparent px-6 py-3.5 text-[15px] text-body outline-none placeholder:text-muted"
-            />
-            <button
-              type="button"
-              onClick={handleBook}
-              disabled={status === "loading"}
-              className="m-1.5 flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-[15px] font-semibold text-white disabled:opacity-70"
-            >
-              {status === "loading" ? "Loading…" : "Book a Call"}
-              {status !== "loading" && <ArrowRight className="h-[16px] w-[16px]" />}
-            </button>
-          </div>
-          {error && (
-            <p className="mt-2 text-[13px] text-red-500">{error}</p>
-          )}
+
+        {/* Form */}
+        <div style={{ marginTop: 40 }}>
+          <form onSubmit={handleSubmit} noValidate>
+              <label htmlFor="hero-email" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap" }}>
+                Business email
+              </label>
+              <div id="hero-form-pill" style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                background: "#fff",
+                border: `1px solid ${error ? "#C0392B" : "#E7DFD0"}`,
+                borderRadius: 999,
+                padding: "7px 7px 7px 18px",
+                boxShadow: "0 1px 4px rgba(0,0,0,.06)",
+                maxWidth: 470,
+                margin: "0 auto",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, minWidth: 0 }}>
+                  <Mail size={18} color="#B7AC9B" style={{ flexShrink: 0 }} />
+                  <input
+                    id="hero-email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => { setEmail(e.target.value); if (error) setError(""); }}
+                    placeholder="Enter your email"
+                    aria-invalid={!!error}
+                    aria-describedby={error ? "hero-email-error" : undefined}
+                    style={{
+                      flex: 1,
+                      background: "transparent",
+                      border: "none",
+                      outline: "none",
+                      fontSize: 15,
+                      color: "#1C1814",
+                      fontFamily: "'Poppins', sans-serif",
+                      minWidth: 0,
+                    }}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  style={{
+                    background: "#C05F32",
+                    color: "#fff",
+                    border: "none",
+                    borderRadius: 999,
+                    padding: "12px 22px",
+                    fontSize: 14.5,
+                    fontWeight: 600,
+                    whiteSpace: "nowrap",
+                    cursor: "pointer",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                    fontFamily: "'Poppins', sans-serif",
+                    transition: "background 0.15s",
+                  }}
+                  onMouseOver={(e) => (e.currentTarget.style.background = "#A54E27")}
+                  onMouseOut={(e) => (e.currentTarget.style.background = "#C05F32")}
+                >
+                  {loading ? "Loading…" : "Book a Call"}
+                  {!loading && <ArrowRight size={16} />}
+                </button>
+              </div>
+              {error && (
+                <p id="hero-email-error" role="alert" style={{ color: "#C0392B", fontSize: 13, marginTop: 10, fontFamily: "'Poppins', sans-serif" }}>
+                  {error}
+                </p>
+              )}
+            </form>
         </div>
+
+        {/* Trust line */}
+        <p style={{ fontSize: 13.5, color: "#A89C8B", marginTop: 24, fontFamily: "'Poppins', sans-serif" }}>
+          Trusted by founders shipping every week · No long-term lock-in
+        </p>
       </div>
+
+      {/* Responsive: stack button below input on small screens */}
+      <style>{`
+        @media (max-width: 480px) {
+          #hero-form-pill {
+            flex-direction: column !important;
+            border-radius: 18px !important;
+            padding: 14px 14px 10px !important;
+            align-items: stretch !important;
+          }
+          #hero-form-pill button {
+            justify-content: center;
+            width: 100%;
+          }
+        }
+      `}</style>
     </section>
   );
 }

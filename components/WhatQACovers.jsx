@@ -123,7 +123,7 @@ export function WhatQACovers() {
         {/* Timeline */}
         <div style={{ position: "relative" }}>
           {/* Vertical rail */}
-          <div style={{
+          <div className="wqc-rail" style={{
             position: "absolute",
             left: 27,
             top: 18,
@@ -136,14 +136,14 @@ export function WhatQACovers() {
           {phases.map((phase, phaseIdx) => (
             <div key={phase.label}>
               {/* Phase label row */}
-              <div style={{
+              <div className="wqc-phase" style={{
                 display: "flex",
                 alignItems: "center",
                 gap: 28,
                 marginTop: phaseIdx === 0 ? 0 : 40,
                 marginBottom: 16,
               }}>
-                <div style={{ width: 56, flexShrink: 0, display: "flex", justifyContent: "center", position: "relative", zIndex: 1 }}>
+                <div className="wqc-phase-node" style={{ width: 56, flexShrink: 0, display: "flex", justifyContent: "center", position: "relative", zIndex: 1 }}>
                   <div style={{
                     width: 11,
                     height: 11,
@@ -169,7 +169,7 @@ export function WhatQACovers() {
                 const isDisabled = item.disabled;
                 return (
                   <div key={item.n}
-                    className="group transition-all duration-200 hover:-translate-y-1"
+                    className="wqc-item group transition-all duration-200 hover:-translate-y-1"
                     style={{ display: "flex", gap: 28, alignItems: "flex-start", marginBottom: 16, position: "relative" }}>
                     {isDisabled && (
                       <span style={{
@@ -192,7 +192,7 @@ export function WhatQACovers() {
                     )}
 
                     {/* Numbered node */}
-                    <div style={{ width: 56, flexShrink: 0, display: "flex", justifyContent: "center", position: "relative", zIndex: 1, opacity: isDisabled ? 0.45 : 1, filter: isDisabled ? "grayscale(1)" : "none" }}>
+                    <div className="wqc-node" style={{ width: 56, flexShrink: 0, display: "flex", justifyContent: "center", position: "relative", zIndex: 1, opacity: isDisabled ? 0.45 : 1, filter: isDisabled ? "grayscale(1)" : "none" }}>
                       <div style={{
                         width: 40,
                         height: 40,
@@ -270,6 +270,16 @@ export function WhatQACovers() {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 600px) {
+          .wqc-rail { display: none !important; }
+          .wqc-node { display: none !important; }
+          .wqc-phase-node { display: none !important; }
+          .wqc-item { gap: 0 !important; }
+          .wqc-phase { gap: 0 !important; }
+        }
+      `}</style>
     </section>
   );
 }

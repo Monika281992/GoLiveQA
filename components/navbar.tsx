@@ -189,15 +189,23 @@ export function Navbar() {
               {mobileServicesOpen && (
                 <div className="mb-2 mt-1 flex flex-col gap-3 rounded-[12px] border border-hairline bg-surface-soft p-4">
                   {[
-                    { icon: "🔍", title: "Manual Testing", href: "/manual-testing" },
-                    { icon: "🤖", title: "Automation Coverage", href: "/automation-coverage" },
-                    { icon: "⚙️", title: "QA Consultation", href: "/quality-engineering" },
+                    { icon: "🔍", title: "Manual Testing", href: "/manual-testing", disabled: false },
+                    { icon: "🤖", title: "Automation Coverage", href: "/automation-coverage", disabled: false },
+                    { icon: "⚙️", title: "QA Consultation", href: "/quality-engineering", disabled: true },
                   ].map((card) => (
-                    <a key={card.title} href={card.href} onClick={closeAll}
-                      className="flex items-center gap-3 rounded-[8px] border border-hairline bg-white px-4 py-3 text-[14px] font-medium text-ink hover:text-accent">
-                      <span className="text-[1.2rem] leading-none">{card.icon}</span>
-                      {card.title}
-                    </a>
+                    card.disabled ? (
+                      <div key={card.title} className="relative flex items-center gap-3 rounded-[8px] border border-hairline bg-white px-4 py-3 text-[14px] font-medium text-muted opacity-60 cursor-not-allowed">
+                        <span className="text-[1.2rem] leading-none grayscale">{card.icon}</span>
+                        {card.title}
+                        <span className="ml-auto inline-flex items-center rounded-full bg-[#dff3e4] px-2 py-0.5 text-[10px] font-semibold text-[#2f8a4e]">Coming soon</span>
+                      </div>
+                    ) : (
+                      <a key={card.title} href={card.href} onClick={closeAll}
+                        className="flex items-center gap-3 rounded-[8px] border border-hairline bg-white px-4 py-3 text-[14px] font-medium text-ink hover:text-accent">
+                        <span className="text-[1.2rem] leading-none">{card.icon}</span>
+                        {card.title}
+                      </a>
+                    )
                   ))}
                   <a href="/book-a-call" onClick={closeAll}
                     className="flex items-center gap-1.5 pt-1 text-[13.5px] font-semibold text-accent">

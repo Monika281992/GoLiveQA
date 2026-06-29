@@ -89,8 +89,9 @@ export function AutomationTesting() {
           </p>
 
           {/* Framework chips */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, flexWrap: "wrap" }}>
+          <div id="at-chips" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, flexWrap: "wrap" }}>
             <span style={{ fontSize: 13, color: "#7a6f62" }}>Currently available in</span>
+            <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             {[
               { name: "Playwright", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/playwright/playwright-original.svg" },
               { name: "Cypress", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg" },
@@ -112,7 +113,13 @@ export function AutomationTesting() {
                 {name}
               </span>
             ))}
+            </div>
           </div>
+          <style>{`
+            @media (max-width: 600px) {
+              #at-chips { flex-direction: column !important; }
+            }
+          `}</style>
         </div>
       </section>
 

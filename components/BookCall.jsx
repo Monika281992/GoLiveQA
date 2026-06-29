@@ -91,7 +91,7 @@ export function BookCall() {
 
   if (isSuccess) {
     return (
-      <div className="flex flex-col items-center justify-center gap-6 rounded-[22px] border border-hairline bg-white p-9 shadow-card text-center">
+      <div className="flex flex-col items-center justify-center gap-6 rounded-[22px] border border-hairline bg-white shadow-card text-center" style={{ padding: "56px 48px" }}>
         <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
           <ArrowRight className="h-9 w-9 text-green-600" />
         </div>

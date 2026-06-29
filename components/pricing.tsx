@@ -24,7 +24,7 @@ export function Pricing() {
             </p>
             <div className="mt-8">
               <Button asChild size="lg">
-                <a href="#contact">
+                <a href="/book-a-call">
                   <Calendar className="h-[19px] w-[19px]" />
                   Book a 30-min Call
                 </a>

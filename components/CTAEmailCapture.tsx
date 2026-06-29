@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ArrowRight } from "lucide-react";
+import { Mail, ArrowRight } from "lucide-react";
 
 export function CTAEmailCapture({ heading, subtext }: { heading: string; subtext: string }) {
   const router = useRouter();
@@ -27,34 +27,103 @@ export function CTAEmailCapture({ heading, subtext }: { heading: string; subtext
   }
 
   return (
-    <section className="py-16 md:py-24">
-      <div className="mx-auto max-w-[680px] px-5 text-center sm:px-8">
-        <h2 className="text-[clamp(1.8rem,3.5vw,2.4rem)] font-bold tracking-[-0.025em] text-ink">
+    <section style={{ background: "#F8F4ED", padding: "80px 0 88px" }}>
+      <div style={{ maxWidth: 680, margin: "0 auto", padding: "0 36px", textAlign: "center", fontFamily: "'Poppins', sans-serif" }}>
+        <h2 style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.4rem)", fontWeight: 700, letterSpacing: "-0.025em", color: "#1C1814", margin: 0 }}>
           {heading}
         </h2>
-        <p className="mt-3 text-[1rem] text-muted">{subtext}</p>
-        <div className="mx-auto mt-8 max-w-[480px]">
-          <div className={`flex items-center overflow-hidden rounded-full border bg-surface shadow-sm transition-colors ${error ? "border-red-400" : "border-hairline"}`}>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => { setEmail(e.target.value); if (error) setError(""); }}
-              placeholder="Enter your business email"
-              className="flex-1 bg-transparent px-6 py-3.5 text-[15px] text-body outline-none placeholder:text-muted"
-            />
+        <p style={{ marginTop: 12, fontSize: 16, color: "#7a6f62", lineHeight: 1.6 }}>{subtext}</p>
+
+        <form
+          onSubmit={(e) => { e.preventDefault(); handleBook(); }}
+          noValidate
+          style={{ marginTop: 32 }}
+        >
+          <label htmlFor="cta-email" style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0,0,0,0)", whiteSpace: "nowrap" }}>
+            Business email
+          </label>
+          <div id="cta-form-pill" style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            background: "#fff",
+            border: `1px solid ${error ? "#C0392B" : "#E7DFD0"}`,
+            borderRadius: 999,
+            padding: "7px 7px 7px 18px",
+            boxShadow: "0 1px 4px rgba(0,0,0,.06)",
+            maxWidth: 470,
+            margin: "0 auto",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8, flex: 1, minWidth: 0 }}>
+              <Mail size={18} color="#B7AC9B" style={{ flexShrink: 0 }} />
+              <input
+                id="cta-email"
+                type="email"
+                value={email}
+                onChange={(e) => { setEmail(e.target.value); if (error) setError(""); }}
+                placeholder="Enter your email"
+                aria-invalid={!!error}
+                aria-describedby={error ? "cta-email-error" : undefined}
+                style={{
+                  flex: 1,
+                  background: "transparent",
+                  border: "none",
+                  outline: "none",
+                  fontSize: 15,
+                  color: "#1C1814",
+                  fontFamily: "'Poppins', sans-serif",
+                  minWidth: 0,
+                }}
+              />
+            </div>
             <button
-              type="button"
-              onClick={handleBook}
+              type="submit"
               disabled={status === "loading"}
-              className="m-1.5 flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-[15px] font-semibold text-white disabled:opacity-70"
+              style={{
+                background: "#C05F32",
+                color: "#fff",
+                border: "none",
+                borderRadius: 999,
+                padding: "12px 22px",
+                fontSize: 14.5,
+                fontWeight: 600,
+                whiteSpace: "nowrap",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                fontFamily: "'Poppins', sans-serif",
+                opacity: status === "loading" ? 0.7 : 1,
+                transition: "background 0.15s",
+              }}
+              onMouseOver={(e) => { if (status !== "loading") e.currentTarget.style.background = "#A54E27"; }}
+              onMouseOut={(e) => (e.currentTarget.style.background = "#C05F32")}
             >
               {status === "loading" ? "Loading…" : "Book a Call"}
-              {status !== "loading" && <ArrowRight className="h-[16px] w-[16px]" />}
+              {status !== "loading" && <ArrowRight size={16} />}
             </button>
           </div>
-          {error && <p className="mt-2 text-[13px] text-red-500">{error}</p>}
-        </div>
+          {error && (
+            <p id="cta-email-error" role="alert" style={{ color: "#C0392B", fontSize: 13, marginTop: 10, fontFamily: "'Poppins', sans-serif" }}>
+              {error}
+            </p>
+          )}
+        </form>
       </div>
+      <style>{`
+        @media (max-width: 480px) {
+          #cta-form-pill {
+            flex-direction: column !important;
+            border-radius: 18px !important;
+            padding: 14px 14px 10px !important;
+            align-items: stretch !important;
+          }
+          #cta-form-pill button {
+            justify-content: center;
+            width: 100%;
+          }
+        }
+      `}</style>
     </section>
   );
 }
