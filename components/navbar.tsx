@@ -110,7 +110,7 @@ export function Navbar() {
                   {[
                     { icon: "🔍", title: "Manual Testing", href: "/manual-testing", text: "Identify and resolve complex user experience issues with expert-led manual validation.", disabled: false },
                     { icon: "🤖", title: "Automation Coverage", href: "/automation-coverage", text: "Establish consistent, high-performance automation frameworks for dependable releases.", disabled: false },
-                    { icon: "⚙️", title: "QA Consultation", href: "/quality-engineering", text: "Discover your QA gaps and get a clear roadmap to fix them.", disabled: true },
+                    { icon: "⚙️", title: "One-Time QA Audit", href: "/one-time-qa-audit", text: "Get a real picture of your product's quality before your big step, no long-term commitment needed.", disabled: false },
                   ].map((card) => (
                     card.disabled ? (
                       <div key={card.title} className="relative flex items-start gap-3 rounded-[10px] border border-hairline bg-white p-4 shadow-sm opacity-60 cursor-not-allowed">
@@ -191,7 +191,7 @@ export function Navbar() {
                   {[
                     { icon: "🔍", title: "Manual Testing", href: "/manual-testing", disabled: false },
                     { icon: "🤖", title: "Automation Coverage", href: "/automation-coverage", disabled: false },
-                    { icon: "⚙️", title: "QA Consultation", href: "/quality-engineering", disabled: true },
+                    { icon: "⚙️", title: "One-Time QA Audit", href: "/one-time-qa-audit", disabled: false },
                   ].map((card) => (
                     card.disabled ? (
                       <div key={card.title} className="relative flex items-center gap-3 rounded-[8px] border border-hairline bg-white px-4 py-3 text-[14px] font-medium text-muted opacity-60 cursor-not-allowed">

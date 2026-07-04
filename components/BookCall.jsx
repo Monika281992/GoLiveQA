@@ -15,6 +15,7 @@ const coverageOptions = [
   "Automation coverage",
   "API testing",
   "Mobile app testing",
+  "One-time QA audit",
   "Not sure — need advice",
 ];
 

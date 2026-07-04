@@ -4,6 +4,7 @@ import { ProblemsWeSolve } from "@/components/ProblemsWeSolve";
 import { Process } from "@/components/process";
 import { Pricing } from "@/components/pricing";
 import { Contact } from "@/components/contact";
+import { WhatWeTest } from "@/components/WhatWeTest";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
         <Hero />
         <ProblemsWeSolve />
         <Process />
+        <WhatWeTest />
         <Pricing />
         <Contact />
       </main>

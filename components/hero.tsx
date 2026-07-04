@@ -160,21 +160,6 @@ export function Hero() {
         </p>
       </div>
 
-      {/* Responsive: stack button below input on small screens */}
-      <style>{`
-        @media (max-width: 480px) {
-          #hero-form-pill {
-            flex-direction: column !important;
-            border-radius: 18px !important;
-            padding: 14px 14px 10px !important;
-            align-items: stretch !important;
-          }
-          #hero-form-pill button {
-            justify-content: center;
-            width: 100%;
-          }
-        }
-      `}</style>
     </section>
   );
 }
