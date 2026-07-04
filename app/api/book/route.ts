@@ -26,10 +26,10 @@ export async function POST(request: Request) {
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333; border-bottom: 2px solid #c2613f; padding-bottom: 10px;">
-            New Book a Call Request
+            📧 Email captured — form not yet submitted
           </h2>
           <p style="font-size: 16px; color: #444;">
-            Someone wants to book a call with you!
+            Someone entered their email and landed on the Book a Call page. They haven't filled out the form yet.
           </p>
           <div style="background-color: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <p style="margin: 0; font-size: 15px;">

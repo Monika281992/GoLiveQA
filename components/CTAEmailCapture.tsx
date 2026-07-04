@@ -110,20 +110,6 @@ export function CTAEmailCapture({ heading, subtext }: { heading: string; subtext
           )}
         </form>
       </div>
-      <style>{`
-        @media (max-width: 480px) {
-          #cta-form-pill {
-            flex-direction: column !important;
-            border-radius: 18px !important;
-            padding: 14px 14px 10px !important;
-            align-items: stretch !important;
-          }
-          #cta-form-pill button {
-            justify-content: center;
-            width: 100%;
-          }
-        }
-      `}</style>
     </section>
   );
 }

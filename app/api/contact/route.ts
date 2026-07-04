@@ -26,7 +26,7 @@ export async function POST(request: Request) {
 
     // Send email using Resend
     await resend.emails.send({
-      from: "GoLiveQA Contact Form <onboarding@resend.dev>", // Use verified domain in production
+      from: "GoLiveQA Contact Form <onboarding@resend.dev>",
       to: "monika@goliveqa.com",
       replyTo: email,
       subject: `New Contact Form Submission: ${service}`,

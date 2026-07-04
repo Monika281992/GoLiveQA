@@ -2,7 +2,8 @@ import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { WhatQACovers } from "@/components/WhatQACovers";
 import { CTAEmailCapture } from "@/components/CTAEmailCapture";
-import { TestTube, Users, Eye } from "lucide-react";
+import HeroEmailForm from "@/components/HeroEmailForm";
+import { Globe, Smartphone, Braces, TestTube, Users, Eye } from "lucide-react";
 
 export const metadata = {
   title: "Manual Testing — GoLiveQA",
@@ -32,6 +33,63 @@ export default function ManualTestingPage() {
     <div className="min-h-screen bg-surface">
       <Navbar />
       <main>
+
+        {/* Hero */}
+        <section style={{ background: "#efe5d4", padding: "92px 32px 84px" }}>
+          <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
+            <h1 style={{
+              fontFamily: "'Poppins', sans-serif",
+              fontWeight: 600,
+              fontSize: "clamp(1.8rem, 4vw, 2.5rem)",
+              letterSpacing: "-0.02em",
+              color: "#211a15",
+              lineHeight: 1.15,
+              margin: "0 0 16px",
+            }}>
+              Human Eyes on Every Release
+            </h1>
+
+            <p style={{
+              maxWidth: 600, margin: "0 auto 28px",
+              fontSize: 16.5,
+              color: "#7a6f62", lineHeight: 1.65,
+            }}>
+              We manually test every core flow the way a real user would —
+              catching the edge cases, broken states, and confusing UX that
+              automated scripts sail right past.
+            </p>
+
+            <HeroEmailForm buttonLabel="Book a Call" />
+
+            {/* Badges */}
+            <div id="mt-chips" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, flexWrap: "wrap", marginTop: 24 }}>
+              <span style={{ fontSize: 13, color: "#7a6f62", fontFamily: "'Poppins', sans-serif" }}>Currently available in</span>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                {[
+                  { label: "Web", Icon: Globe },
+                  { label: "Mobile", Icon: Smartphone },
+                  { label: "API", Icon: Braces },
+                ].map(({ label, Icon }) => (
+                  <span key={label} style={{
+                    display: "inline-flex", alignItems: "center", gap: 6,
+                    background: "#fff", border: "1px solid #e2d4bf",
+                    borderRadius: 999, padding: "6px 14px",
+                    fontFamily: "'Poppins', sans-serif",
+                    fontWeight: 600, fontSize: 14, color: "#211a15",
+                  }}>
+                    <Icon size={15} color="#c0552f" strokeWidth={2} />
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <style>{`
+              @media (max-width: 600px) {
+                #mt-chips { flex-direction: column !important; }
+              }
+            `}</style>
+          </div>
+        </section>
 
         {/* How We Work timeline */}
         <WhatQACovers />

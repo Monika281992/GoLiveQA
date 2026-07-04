@@ -13,7 +13,7 @@ import {
 
 const ACCENT      = "#c0552f";
 const RAIL_COLOR  = "#ddcdb4";
-const BG_SECTION  = "#efe5d4";
+const BG_SECTION  = "#faf6ef";
 const BG_CARD     = "#ffffff";
 const TEXT_HEAD   = "#211a15";
 const TEXT_BODY   = "#7a6f62";
