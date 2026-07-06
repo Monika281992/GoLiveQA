@@ -12,19 +12,8 @@ export function Footer() {
         <a href="#top" className="text-lg font-bold tracking-tight text-brand">
           GoLiveQA
         </a>
-        <div className="flex flex-wrap gap-6">
-          {links.map((l) => (
-            <a
-              key={l.href}
-              href={l.href}
-              className="text-sm text-muted transition-colors hover:text-ink"
-            >
-              {l.label}
-            </a>
-          ))}
-        </div>
         <p className="text-[13.5px] text-faint">
-          © 2026 GoLiveQA. All rights reserved. A boutique QA consultancy.
+          © 2026 GoLiveQA. All rights reserved.
         </p>
       </div>
     </footer>
