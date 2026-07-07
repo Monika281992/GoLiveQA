@@ -41,8 +41,8 @@ const phases = [
       },
       {
         n: 2, Icon: UsersRound,
-        title: "Reviewing/Adding Acceptance Criteria Early",
-        desc:  "We review acceptance criteria before development begins — flagging missing scenarios early to reduce back and forth between teams.",
+        title: "AI-Assisted Test Case Generation",
+        desc:  "We use AI to draft test cases directly from your requirements and acceptance criteria — then our QA team reviews, refines, and fills every gap AI misses, so nothing ships untested.",
         dark: false,
       },
     ],
@@ -52,8 +52,8 @@ const phases = [
     items: [
       {
         n: 3, Icon: Route,
-        title: "Manual Testing of Product",
-        desc:  "Once code review is done, our QA team picks up and manually tests every possible scenario a user could encounter — ensuring it works exactly as intended.",
+        title: "Deep Testing of product",
+        desc:  "Once we get go ahead from dev team, our QA team picks up and manually tests every possible scenario a user could encounter — ensuring it works exactly as intended.",
         dark: false,
       },
       {

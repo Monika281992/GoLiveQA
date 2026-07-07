@@ -10,6 +10,12 @@ const dimensions = [
     checks: ["Sign-up, login & account recovery", "Checkout and conversion flows", "Primary create/read/update/delete paths", "Empty, loading & error states"],
   },
   {
+    title: "UI/UX testing",
+    tag: "Usability, visual, accessibility",
+    desc: "We test your product the way real users experience it — checking that it looks right, feels right, and works for everyone.",
+    checks: ["Visual consistency & spacing", "Form feedback & error messages", "Accessibility & keyboard navigation", "Copy clarity & confusing interactions"],
+  },
+  {
     title: "Cross-platform",
     tag: "Browsers, devices, screens",
     desc: "Your product tested across the browsers and devices your customers actually use, not just the one on your desk.",
@@ -26,12 +32,6 @@ const dimensions = [
     tag: "Load signals, bottlenecks",
     desc: "We surface the slow paths and resource leaks that quietly erode the experience under real load.",
     checks: ["TTFB & core web vitals", "Bundle size & render-blocking assets", "Slow queries & N+1 patterns", "Memory growth & leaks"],
-  },
-  {
-    title: "CI/CD review",
-    tag: "Pipeline and release risk",
-    desc: "A read on how safely you ship — and where a bad deploy could slip through unnoticed.",
-    checks: ["Test gates & coverage blind spots", "Rollback & recovery paths", "Environment parity", "Release & branching hygiene"],
   },
   {
     title: "Security basics",

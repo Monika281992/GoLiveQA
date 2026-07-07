@@ -1,43 +1,33 @@
 const phases = [
   {
     flex: 1.3,
-    day: "Day 0",
-    title: "Scope call",
+    day: "WEEK 1",
+    title: "Scope call & product understanding",
     bandBg: "#f3e3d8",
     dayColor: "#b5542d",
     titleColor: "#1c1a16",
     emphasis: false,
-    desc: "We align on your product, priorities, and the risk areas that matter most.",
+    desc: "We align on your product, priorities, and the risk areas that matter most, then get hands-on with your product ahead of testing.",
   },
   {
     flex: 4,
-    day: "Day 1–5",
+    day: "WEEK 2–3",
     title: "Deep testing",
     bandBg: "#b5542d",
     dayColor: "rgba(255,255,255,.8)",
     titleColor: "#fff",
     emphasis: true,
-    desc: "Hands-on manual testing across every dimension above — the bulk of the week, done by a senior QA engineer, never an automated scan.",
+    desc: "Hands-on manual testing across every dimension above, done by a senior QA engineer — never an automated scan.",
   },
   {
     flex: 1.4,
-    day: "Day 6",
-    title: "Report & prioritization",
-    bandBg: "#eecbb7",
-    dayColor: "#9a4622",
-    titleColor: "#1c1a16",
-    emphasis: false,
-    desc: "Findings written up and ranked P0–P3 with clear reproduction steps.",
-  },
-  {
-    flex: 1.4,
-    day: "Day 7",
-    title: "Walkthrough call",
+    day: "Week 4",
+    title: "Report, prioritization & walkthrough call",
     bandBg: "#f3e3d8",
     dayColor: "#b5542d",
     titleColor: "#1c1a16",
     emphasis: false,
-    desc: "We walk you through everything, recorded for your whole team.",
+    desc: "Findings written up and ranked P0–P3 with clear reproduction steps, then walked through live with your team.",
   },
 ];
 
@@ -60,18 +50,18 @@ export default function HowItWorks() {
 
         {/* H2 */}
         <h2 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "clamp(26px, 4vw, 36px)", color: "#16233c", letterSpacing: "-0.02em", margin: "0 0 16px", lineHeight: 1.15, textAlign: "center" }}>
-          One clear week, start to finish
+          What to expect, week by week
         </h2>
 
         {/* Sub-line */}
         <p style={{ fontSize: 16, color: "#6f6557", lineHeight: 1.6, maxWidth: 520, margin: "0 auto 32px", textAlign: "center" }}>
-          From kickoff to a recorded walkthrough in seven business days. Each band below is sized to the time it takes.
+          From kickoff to a recorded walkthrough in about a month. Each band below is sized to the time it takes.
         </p>
 
         {/* Axis row */}
         <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10, fontSize: 12, fontWeight: 700, letterSpacing: "0.04em", color: "#948d80" }}>
           <span>KICKOFF</span>
-          <span>7 BUSINESS DAYS</span>
+          <span>2 WEEKS</span>
           <span>DELIVERY</span>
         </div>
 

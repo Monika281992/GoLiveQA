@@ -4,8 +4,16 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
   {
+    q: "How many flows are covered in the audit?",
+    a: "Up to 5 core user flows — you choose which ones matter most (like signup, checkout, or your main dashboard). There's no cap on test cases within those 5 flows — each one is tested as thoroughly as it needs to be, covering the happy path, edge cases, and failure scenarios in full. Need more than 5 flows? You can add flows anytime, priced into the same quote.",
+  },
+  {
+    q: "What counts as one \"flow\"?",
+    a: "A flow is a complete user journey through your product — like signing up, checking out, or resetting a password — tested end-to-end. Each flow typically includes 15–20+ individual test cases covering the happy path, edge cases, validation errors, and failure scenarios, not just a single click-through. For example, a \"Sign Up\" flow includes testing valid and invalid inputs, duplicate emails, password rules, verification links, social login, mobile responsiveness, and more — all under that one flow.",
+  },
+  {
     q: "How long does the audit take?",
-    a: "Depends on the scope — but typically five to seven business days. We agree on a delivery date upfront so there are no surprises.",
+    a: "Depends on the scope — but typically about a month. It can finish earlier if only a few features need testing. We agree on a delivery date upfront so there are no surprises.",
   },
   {
     q: "What do you need from us?",
@@ -21,7 +29,7 @@ const faqs = [
   },
   {
     q: "Who actually runs the audit?",
-    a: "A senior QA engineer works your product by hand. You are not paying for an automated scanner or a junior checklist run.",
+    a: "A senior QA engineer works on your product by hand. You are not paying for an automated scanner or a junior checklist run.",
   },
 ];
 

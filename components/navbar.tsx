@@ -153,7 +153,8 @@ export function Navbar() {
           </div>
 
           <a href="/#process" className={`text-[17px] font-medium transition-colors hover:text-ink ${activeSection === "process" ? "text-accent" : "text-body"}`}>Process</a>
-          <a href="/#contact" className={`text-[17px] font-medium transition-colors hover:text-ink ${activeSection === "contact" ? "text-accent" : "text-body"}`}>Contact</a>
+          <Link href="/plans" className={`text-[17px] font-medium transition-colors hover:text-ink ${pathname === "/plans" ? "text-accent" : "text-body"}`}>Pricing</Link>
+          <Link href="/contact-us" className={`text-[17px] font-medium transition-colors hover:text-ink ${pathname === "/contact-us" ? "text-accent" : "text-body"}`}>Contact</Link>
         </div>
 
         <div className="flex items-center gap-3">
@@ -217,7 +218,8 @@ export function Navbar() {
             </div>
 
             <a href="/#process" onClick={closeAll} className="py-2 text-[15px] font-medium text-body">Process</a>
-            <a href="/#contact" onClick={closeAll} className="py-2 text-[15px] font-medium text-body">Contact</a>
+            <Link href="/plans" onClick={closeAll} className="py-2 text-[15px] font-medium text-body">Pricing</Link>
+            <Link href="/contact-us" onClick={closeAll} className="py-2 text-[15px] font-medium text-body">Contact</Link>
             <Link href="/book-a-call" onClick={closeAll}
               className="mt-2 inline-flex items-center justify-center rounded-xl border-[1.5px] border-brand px-4 py-2 text-[14px] font-semibold text-brand">
               Book a Call
