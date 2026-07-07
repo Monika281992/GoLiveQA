@@ -57,15 +57,15 @@ export default function OneTimeQAAuditPage() {
             <HeroEmailForm buttonLabel="Book Your Audit" />
 
             <p style={{ marginTop: 18, fontSize: 13, color: "#948d80", fontFamily: "'Poppins', sans-serif" }}>
-              Delivered in 5–7 business days · One flat scope · No ongoing commitment
+              One flat scope · No ongoing commitment
             </p>
           </div>
         </section>
 
+        <HowItWorks />
         <WhoThisIsFor />
         <WhatWeAudit />
         <WhatYouGet />
-        <HowItWorks />
         <FAQ />
         <CTABand />
 

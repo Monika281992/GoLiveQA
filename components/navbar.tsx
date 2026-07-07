@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { ChevronDown, ArrowRight, Globe, Smartphone, Webhook, Monitor, LayoutDashboard, Layers, RefreshCw, CheckCircle2, GitMerge, Workflow, Zap, MonitorSmartphone, Shield, Code2, FileCode, Terminal, Send, Activity } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -85,9 +86,9 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-surface/80 backdrop-blur-md backdrop-saturate-150">
       <nav className="mx-auto flex max-w-container items-center justify-between gap-4 px-5 py-3.5 sm:px-8 lg:px-12">
-        <a href="/" className="text-xl font-bold tracking-tight text-ink">
+        <Link href="/" className="text-xl font-bold tracking-tight text-ink">
           GoLiveQA
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <div className="hidden items-center gap-7 md:flex">
@@ -124,7 +125,7 @@ export function Navbar() {
                         </div>
                       </div>
                     ) : (
-                      <a key={card.title} href={card.href} onClick={closeAll} className={`flex items-start gap-3 rounded-[10px] border bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lift cursor-pointer no-underline ${
+                      <Link key={card.title} href={card.href} onClick={closeAll} className={`flex items-start gap-3 rounded-[10px] border bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-lift cursor-pointer no-underline ${
                         pathname.startsWith(card.href) ? "border-accent/40 bg-accent/5" : "border-hairline hover:border-accent/30"
                       }`}>
                         <span className="mt-0.5 text-[1.5rem] leading-none">{card.icon}</span>
@@ -132,7 +133,7 @@ export function Navbar() {
                           <p className="mb-1 text-[15px] font-semibold text-ink">{card.title}</p>
                           <p className="text-[13.5px] leading-snug text-muted">{card.text}</p>
                         </div>
-                      </a>
+                      </Link>
                     )
                   ))}
                 </div>
@@ -142,22 +143,23 @@ export function Navbar() {
                   <p className="text-[14px] text-muted">
                     Didn&apos;t find what you were looking for? Tell us about your needs.
                   </p>
-                  <a href="/book-a-call" onClick={closeAll}
+                  <Link href="/book-a-call" onClick={closeAll}
                     className="flex items-center gap-1.5 text-[13.5px] font-semibold text-accent transition-opacity hover:opacity-80">
                     Book a Consultation <ArrowRight className="h-[14px] w-[14px]" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             )}
           </div>
 
           <a href="/#process" className={`text-[17px] font-medium transition-colors hover:text-ink ${activeSection === "process" ? "text-accent" : "text-body"}`}>Process</a>
-          <a href="/#contact" className={`text-[17px] font-medium transition-colors hover:text-ink ${activeSection === "contact" ? "text-accent" : "text-body"}`}>Contact</a>
+          <Link href="/plans" className={`text-[17px] font-medium transition-colors hover:text-ink ${pathname === "/plans" ? "text-accent" : "text-body"}`}>Pricing</Link>
+          <Link href="/contact-us" className={`text-[17px] font-medium transition-colors hover:text-ink ${pathname === "/contact-us" ? "text-accent" : "text-body"}`}>Contact</Link>
         </div>
 
         <div className="flex items-center gap-3">
           <Button asChild variant="outline" size="sm" className="hidden md:inline-flex">
-            <a href="/book-a-call">Book a Call</a>
+            <Link href="/book-a-call">Book a Call</Link>
           </Button>
           {/* Mobile hamburger */}
           <button
@@ -200,27 +202,28 @@ export function Navbar() {
                         <span className="ml-auto inline-flex items-center rounded-full bg-[#dff3e4] px-2 py-0.5 text-[10px] font-semibold text-[#2f8a4e]">Coming soon</span>
                       </div>
                     ) : (
-                      <a key={card.title} href={card.href} onClick={closeAll}
+                      <Link key={card.title} href={card.href} onClick={closeAll}
                         className="flex items-center gap-3 rounded-[8px] border border-hairline bg-white px-4 py-3 text-[14px] font-medium text-ink hover:text-accent">
                         <span className="text-[1.2rem] leading-none">{card.icon}</span>
                         {card.title}
-                      </a>
+                      </Link>
                     )
                   ))}
-                  <a href="/book-a-call" onClick={closeAll}
+                  <Link href="/book-a-call" onClick={closeAll}
                     className="flex items-center gap-1.5 pt-1 text-[13.5px] font-semibold text-accent">
                     Book a Consultation <ArrowRight className="h-[14px] w-[14px]" />
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
 
             <a href="/#process" onClick={closeAll} className="py-2 text-[15px] font-medium text-body">Process</a>
-            <a href="/#contact" onClick={closeAll} className="py-2 text-[15px] font-medium text-body">Contact</a>
-            <a href="/book-a-call" onClick={closeAll}
+            <Link href="/plans" onClick={closeAll} className="py-2 text-[15px] font-medium text-body">Pricing</Link>
+            <Link href="/contact-us" onClick={closeAll} className="py-2 text-[15px] font-medium text-body">Contact</Link>
+            <Link href="/book-a-call" onClick={closeAll}
               className="mt-2 inline-flex items-center justify-center rounded-xl border-[1.5px] border-brand px-4 py-2 text-[14px] font-semibold text-brand">
               Book a Call
-            </a>
+            </Link>
           </div>
         </div>
       )}

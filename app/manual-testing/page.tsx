@@ -18,8 +18,8 @@ const highlights = [
   },
   {
     Icon: Users,
-    title: "Real-Time Team Coordination",
-    text: "Our QA team coordinates directly with your engineers during working hours — no delays, no back and forth.",
+    title: "Dedicated QA",
+    text: "A dedicated QA will be assigned to your project which will coordinate directly with your engineers during working hours — no delays, no back and forth.",
   },
   {
     Icon: Eye,
@@ -63,7 +63,7 @@ export default function ManualTestingPage() {
 
             {/* Badges */}
             <div id="mt-chips" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 10, flexWrap: "wrap", marginTop: 24 }}>
-              <span style={{ fontSize: 13, color: "#7a6f62", fontFamily: "'Poppins', sans-serif" }}>Currently available in</span>
+              <span style={{ fontSize: 13, color: "#7a6f62", fontFamily: "'Poppins', sans-serif" }}>Available in</span>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                 {[
                   { label: "Web", Icon: Globe },
