@@ -1,4 +1,7 @@
-import { Calendar, Check } from "lucide-react";
+"use client";
+
+import { useEffect, useState } from "react";
+import { Calendar, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const guarantees = [
@@ -8,6 +11,21 @@ const guarantees = [
 ];
 
 export function Pricing() {
+  const [isSchedulerOpen, setIsSchedulerOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isSchedulerOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsSchedulerOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [isSchedulerOpen]);
+
   return (
     <section id="pricing" className="py-16 md:py-24 lg:py-[108px]" style={{ background: "#fffdf9" }}>
       <div className="mx-auto max-w-container px-5 sm:px-8 lg:px-12">
@@ -23,11 +41,9 @@ export function Pricing() {
               quote within 24 hours.
             </p>
             <div className="mt-8">
-              <Button asChild size="lg">
-                <a href="/book-a-call">
-                  <Calendar className="h-[19px] w-[19px]" />
-                  Book a 30-min Call
-                </a>
+              <Button size="lg" onClick={() => setIsSchedulerOpen(true)}>
+                <Calendar className="h-[19px] w-[19px]" />
+                Book a 30 min slot
               </Button>
             </div>
             <div className="mt-7 flex flex-wrap justify-center gap-x-[26px] gap-y-3 text-sm text-body">
@@ -41,6 +57,34 @@ export function Pricing() {
           </div>
         </div>
       </div>
+
+      {isSchedulerOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+          role="dialog"
+          aria-modal="true"
+          onClick={() => setIsSchedulerOpen(false)}
+        >
+          <div
+            className="relative flex h-[85vh] w-full max-w-[900px] flex-col overflow-hidden rounded-2xl bg-white shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setIsSchedulerOpen(false)}
+              aria-label="Close scheduler"
+              className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-ink shadow-md hover:bg-gray-100"
+            >
+              <X className="h-5 w-5" />
+            </button>
+            <iframe
+              src="https://cal.id/monika-chaudhary"
+              title="Book a 30 min slot"
+              className="h-full w-full flex-1 border-0"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
